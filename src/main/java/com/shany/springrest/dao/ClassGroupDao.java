@@ -2,6 +2,9 @@ package com.shany.springrest.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ClassGroupDao extends JpaRepository<Object, Object> {
+
+import com.shany.springrest.model.ClassGroup;
+
+public interface ClassGroupDao extends JpaRepository<ClassGroup, Integer> {
 
 }
