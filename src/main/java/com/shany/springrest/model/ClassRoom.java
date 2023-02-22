@@ -1,29 +1,29 @@
 package com.shany.springrest.model;
 
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class Subject {
+public class ClassRoom {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@NonNull
 	private String name;
 	
-	private String color;
+	//A FAIRE SI ON A DU TEMPS
+	//private String matieresExclues;
 	
-	@ManyToOne
-	private List<Professor> professors;
+	private int capacity;
+	
+	
 }
