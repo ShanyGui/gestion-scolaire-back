@@ -17,35 +17,39 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shany.springrest.dao.SubjectDao;
 import com.shany.springrest.model.Subject;
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/subjects")
 public class SubjectController {
-@Autowired 
-SubjectDao subjectdao;
-@PostMapping("/add")
-public ResponseEntity<Subject> addOne(@RequestBody Subject subject) {
+	@Autowired
+	SubjectDao subjectdao;
 
-	this.subjectdao.save(subject);
-	return new ResponseEntity<Subject>(subject, HttpStatus.CREATED);
-}
+	@PostMapping("/add")
+	public ResponseEntity<Subject> addOne(@RequestBody Subject subject) {
 
-@GetMapping("/all")
-public ResponseEntity<List<Subject>> findAll() {
-	return new ResponseEntity<List<Subject>>(this.subjectdao.findAll(), HttpStatus.OK);
+		this.subjectdao.save(subject);
+		return new ResponseEntity<Subject>(subject, HttpStatus.CREATED);
+	}
 
-}
-@DeleteMapping("/{id}")
-public ResponseEntity<Void> deletOne(@PathVariable Integer id) {
-	this.subjectdao.deleteById(id);
-	return new ResponseEntity<Void>(HttpStatus.OK);
-}
-@GetMapping("/{id}")
-public ResponseEntity<Subject> findOne(@PathVariable Integer id) {
-	Optional<Subject> optionSubject = this.subjectdao.findById(id);
+	@GetMapping("/all")
+	public ResponseEntity<List<Subject>> findAll() {
+		return new ResponseEntity<List<Subject>>(this.subjectdao.findAll(), HttpStatus.OK);
 
-	return optionSubject.isPresent() ? new ResponseEntity<Subject>(optionSubject.get(), HttpStatus.OK)
-			: new ResponseEntity<Subject>(HttpStatus.NOT_FOUND);
+	}
 
-}
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deletOne(@PathVariable Integer id) {
+		this.subjectdao.deleteById(id);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<Subject> findOne(@PathVariable Integer id) {
+		Optional<Subject> optionSubject = this.subjectdao.findById(id);
+
+		return optionSubject.isPresent() ? new ResponseEntity<Subject>(optionSubject.get(), HttpStatus.OK)
+				: new ResponseEntity<Subject>(HttpStatus.NOT_FOUND);
+
+	}
 }
