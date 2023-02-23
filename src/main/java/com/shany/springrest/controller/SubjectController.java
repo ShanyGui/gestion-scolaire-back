@@ -45,7 +45,6 @@ public class SubjectController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Subject> findOne(@PathVariable Integer id) {
 		Optional<Subject> optionSubject = this.subjectdao.findById(id);
-
 		return optionSubject.isPresent() ? new ResponseEntity<Subject>(optionSubject.get(), HttpStatus.OK)
 				: new ResponseEntity<Subject>(HttpStatus.NOT_FOUND);
 

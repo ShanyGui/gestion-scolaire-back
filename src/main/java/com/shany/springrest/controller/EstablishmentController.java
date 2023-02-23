@@ -35,7 +35,6 @@ public class EstablishmentController {
 	@GetMapping("/all")
 	public ResponseEntity<List<Establishment>> findAll() {
 		return new ResponseEntity<List<Establishment>>(this.establishmentdao.findAll(), HttpStatus.OK);
-
 	}
 
 	@DeleteMapping("/{id}")
