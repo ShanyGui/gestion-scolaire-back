@@ -37,7 +37,6 @@ public class Professor {
 	@NonNull
 	private String dateOfBirth;
 	
-	
 	@ManyToMany
 	@JsonIgnoreProperties("professors")
 	private List<Subject> subjects;

@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Entity
 @Data
@@ -22,10 +23,13 @@ public class Establishment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@NonNull
 	private String name;
 	
+	@NonNull
 	private String adress;
 	
+	@NonNull
 	@Enumerated (EnumType.STRING)
 	private EstablishmentType type;
 	
