@@ -26,13 +26,13 @@ public class ClassroomController {
 	@Autowired
 	ClassroomDao classroomdao;
 	
-	@PostMapping("/add")
+	@PostMapping("/")
 	public ResponseEntity<ClassRoom> addOne(@RequestBody ClassRoom classroom) {
 		this.classroomdao.save(classroom);
 		return new ResponseEntity<ClassRoom>(classroom,HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/all")
+	@GetMapping("/")
 	public ResponseEntity<List<ClassRoom>> findAll() {
 		return new ResponseEntity<List<ClassRoom>>(classroomdao.findAll(),HttpStatus.OK);		
 	}

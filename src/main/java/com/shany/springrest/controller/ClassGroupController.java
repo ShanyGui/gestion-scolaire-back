@@ -27,13 +27,13 @@ public class ClassGroupController {
 	@Autowired
 	ClassGroupDao classgroupdao;
 	
-	@PostMapping("/add")
+	@PostMapping("/")
 	public ResponseEntity<ClassGroup> addOne(@RequestBody ClassGroup classgroup) {
 		this.classgroupdao.save(classgroup);
 		return new ResponseEntity<ClassGroup>(classgroup,HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/all")
+	@GetMapping("/")
 	public ResponseEntity<List<ClassGroup>> findAll() {
 		return new ResponseEntity<List<ClassGroup>>(classgroupdao.findAll(),HttpStatus.OK);		
 	}

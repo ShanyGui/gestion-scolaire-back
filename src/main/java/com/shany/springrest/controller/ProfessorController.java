@@ -28,14 +28,14 @@ public class ProfessorController {
 	@Autowired
 	SubjectDao subjectdao;
 
-	@PostMapping("/add")
+	@PostMapping("/")
 	public ResponseEntity<Professor> addOne(@RequestBody Professor professor) {
 		this.professordao.save(professor);
 		
 		return new ResponseEntity<Professor>(professor, HttpStatus.CREATED);
 	}
 
-	@GetMapping("/all")
+	@GetMapping("/")
 	public ResponseEntity<List<Professor>> findAll() {
 		return new ResponseEntity<List<Professor>>(this.professordao.findAll(), HttpStatus.OK);
 

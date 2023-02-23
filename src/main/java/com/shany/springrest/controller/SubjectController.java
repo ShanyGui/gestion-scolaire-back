@@ -25,13 +25,13 @@ public class SubjectController {
 	@Autowired
 	SubjectDao subjectdao;
 
-	@PostMapping("/add")
+	@PostMapping("/")
 	public ResponseEntity<Subject> addOne(@RequestBody Subject subject) {
 		this.subjectdao.save(subject);
 		return new ResponseEntity<Subject>(subject, HttpStatus.CREATED);
 	}
 
-	@GetMapping("/all")
+	@GetMapping("/")
 	public ResponseEntity<List<Subject>> findAll() {
 		return new ResponseEntity<List<Subject>>(this.subjectdao.findAll(), HttpStatus.OK);
 	}
