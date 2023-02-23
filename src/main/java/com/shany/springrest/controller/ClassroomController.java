@@ -20,7 +20,7 @@ import com.shany.springrest.model.ClassRoom;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/classroom")
+@RequestMapping("/classrooms")
 public class ClassroomController {
 
 	@Autowired
