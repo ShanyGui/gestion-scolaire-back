@@ -27,13 +27,13 @@ public class EstablishmentController {
 	@Autowired
 	EstablishmentDao establishmentdao;
 
-	@PostMapping("/add")
+	@PostMapping("/")
 	public ResponseEntity<Establishment> addOne(@RequestBody Establishment establishment) {
 		this.establishmentdao.save(establishment);
 		return new ResponseEntity<Establishment>(establishment, HttpStatus.CREATED);
 	}
 
-	@GetMapping("/all")
+	@GetMapping("/")
 	public ResponseEntity<List<Establishment>> findAll() {
 		return new ResponseEntity<List<Establishment>>(this.establishmentdao.findAll(), HttpStatus.OK);
 	}
@@ -52,7 +52,7 @@ public class EstablishmentController {
 				: new ResponseEntity<Establishment>(HttpStatus.NOT_FOUND);
 	}
 
-	@PutMapping("/update/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Establishment> update(@RequestBody Establishment establishment, @PathVariable Integer id) {
 		Optional<Establishment> updateEstablishment = establishmentdao.findById(id);
 		
