@@ -37,7 +37,7 @@ public class Establishment {
 	
 	private String logo;
 	
-	@OneToMany(mappedBy = "establishment")
+	@OneToMany(mappedBy = "establishment", cascade = CascadeType.ALL)
 	private List<Professor> professors;
 	
 	@OneToMany(mappedBy = "establishment", cascade = CascadeType.ALL)
