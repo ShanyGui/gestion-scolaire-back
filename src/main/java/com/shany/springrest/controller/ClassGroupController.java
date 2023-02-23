@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.shany.springrest.dao.ClassGroupDao;
 import com.shany.springrest.model.ClassGroup;
 
@@ -27,13 +25,13 @@ public class ClassGroupController {
 	@Autowired
 	ClassGroupDao classgroupdao;
 	
-	@PostMapping("/add")
+	@PostMapping("/")
 	public ResponseEntity<ClassGroup> addOne(@RequestBody ClassGroup classgroup) {
 		this.classgroupdao.save(classgroup);
 		return new ResponseEntity<ClassGroup>(classgroup,HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/all")
+	@GetMapping("/")
 	public ResponseEntity<List<ClassGroup>> findAll() {
 		return new ResponseEntity<List<ClassGroup>>(classgroupdao.findAll(),HttpStatus.OK);		
 	}
