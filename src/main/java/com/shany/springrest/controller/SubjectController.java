@@ -27,7 +27,6 @@ public class SubjectController {
 
 	@PostMapping("/add")
 	public ResponseEntity<Subject> addOne(@RequestBody Subject subject) {
-
 		this.subjectdao.save(subject);
 		return new ResponseEntity<Subject>(subject, HttpStatus.CREATED);
 	}
@@ -35,7 +34,6 @@ public class SubjectController {
 	@GetMapping("/all")
 	public ResponseEntity<List<Subject>> findAll() {
 		return new ResponseEntity<List<Subject>>(this.subjectdao.findAll(), HttpStatus.OK);
-
 	}
 
 	@DeleteMapping("/{id}")
@@ -47,7 +45,6 @@ public class SubjectController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Subject> findOne(@PathVariable Integer id) {
 		Optional<Subject> optionSubject = this.subjectdao.findById(id);
-
 		return optionSubject.isPresent() ? new ResponseEntity<Subject>(optionSubject.get(), HttpStatus.OK)
 				: new ResponseEntity<Subject>(HttpStatus.NOT_FOUND);
 

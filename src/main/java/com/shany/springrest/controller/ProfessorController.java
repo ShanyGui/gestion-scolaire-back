@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shany.springrest.dao.ProfessorDao;
-
+import com.shany.springrest.dao.SubjectDao;
 import com.shany.springrest.model.Professor;
 
 @CrossOrigin("*")
@@ -25,11 +25,13 @@ import com.shany.springrest.model.Professor;
 public class ProfessorController {
 	@Autowired
 	ProfessorDao professordao;
+	@Autowired
+	SubjectDao subjectdao;
 
 	@PostMapping("/add")
 	public ResponseEntity<Professor> addOne(@RequestBody Professor professor) {
-
 		this.professordao.save(professor);
+		
 		return new ResponseEntity<Professor>(professor, HttpStatus.CREATED);
 	}
 

@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,10 +35,9 @@ public class Professor {
 	private String firstname;
 	
 	@NonNull
-	private Date dateOfBirth;
+	private String dateOfBirth;
 	
-	
-	@ManyToMany(mappedBy = "professors")
+	@ManyToMany
 	@JsonIgnoreProperties("professors")
 	private List<Subject> subjects;
 	

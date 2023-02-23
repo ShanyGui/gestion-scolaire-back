@@ -1,6 +1,9 @@
 package com.shany.springrest.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,6 +28,7 @@ public class ClassGroup {
 	@OneToOne(mappedBy = "principalClass")
 	private Professor principalProfessor;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnoreProperties("classgroups")
 	private Establishment establishment;
 }
