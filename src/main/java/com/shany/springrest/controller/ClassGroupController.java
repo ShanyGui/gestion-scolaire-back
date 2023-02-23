@@ -21,7 +21,7 @@ import com.shany.springrest.model.ClassGroup;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/classgroup")
+@RequestMapping("/classgroups")
 public class ClassGroupController {
 
 	@Autowired
