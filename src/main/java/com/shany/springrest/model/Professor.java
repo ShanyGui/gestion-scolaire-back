@@ -41,7 +41,7 @@ public class Professor {
 	@JsonIgnoreProperties("professors")
 	private List<Subject> subjects;
 	
-	@OneToOne
+	@OneToOne(mappedBy = "principalProfessor")
 	private ClassGroup principalClass;
 	
 	@ManyToOne

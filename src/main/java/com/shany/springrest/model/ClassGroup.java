@@ -25,7 +25,7 @@ public class ClassGroup {
 	@NonNull
 	private String name;
 	
-	@OneToOne(mappedBy = "principalClass")
+	@OneToOne
 	private Professor principalProfessor;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
