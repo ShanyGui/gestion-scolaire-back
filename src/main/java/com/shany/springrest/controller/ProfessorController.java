@@ -28,7 +28,7 @@ public class ProfessorController {
 	@Autowired
 	SubjectDao subjectdao;
 
-	@PostMapping("/")
+	@PostMapping({"/", ""})
 	public ResponseEntity<Professor> addOne(@RequestBody Professor professor) {
 		this.professordao.save(professor);
 		
