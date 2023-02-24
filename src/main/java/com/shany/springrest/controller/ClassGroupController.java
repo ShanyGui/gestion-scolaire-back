@@ -40,16 +40,23 @@ public class ClassGroupController {
 		return new ResponseEntity<List<ClassGroup>>(classgroupdao.findAll(),HttpStatus.OK);		
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<ClassGroup> findOne(@PathVariable Integer id) {
+		Optional<ClassGroup> optIncident = this.classgroupdao.findById(id);
+		return new ResponseEntity<ClassGroup>(optIncident.get(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/findbyestablishment/{id}")
+	public ResponseEntity<List<ClassGroup>> findByEstablishment(@PathVariable Integer id) {
+		return new ResponseEntity<List<ClassGroup>>(classgroupdao.findByEstablishmentId(id),HttpStatus.OK);		
+	}
+	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteOne(@PathVariable int id){
+	public ResponseEntity<Void> deleteOne(@PathVariable Integer id){
 		this.classgroupdao.deleteById(id);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<ClassGroup> findOne(@PathVariable int id) {
-		Optional<ClassGroup> optIncident = this.classgroupdao.findById(id);
-		return new ResponseEntity<ClassGroup>(optIncident.get(),HttpStatus.OK);
-	}
+	
 	
 }

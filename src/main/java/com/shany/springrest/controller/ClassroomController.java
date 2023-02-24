@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shany.springrest.dao.ClassroomDao;
+import com.shany.springrest.model.ClassGroup;
 import com.shany.springrest.model.ClassRoom;
 
 @CrossOrigin("*")
@@ -37,15 +38,21 @@ public class ClassroomController {
 		return new ResponseEntity<List<ClassRoom>>(classroomdao.findAll(),HttpStatus.OK);		
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<ClassRoom> findOne(@PathVariable Integer id) {
+		Optional<ClassRoom> optIncident = this.classroomdao.findById(id);
+		return new ResponseEntity<ClassRoom>(optIncident.get(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/findbyestablishment/{id}")
+	public ResponseEntity<List<ClassRoom>> findByEstablishment(@PathVariable Integer id) {
+		return new ResponseEntity<List<ClassRoom>>(classroomdao.findByEstablishmentId(id),HttpStatus.OK);		
+	}
+	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteOne(@PathVariable int id){
+	public ResponseEntity<Void> deleteOne(@PathVariable Integer id){
 		this.classroomdao.deleteById(id);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<ClassRoom> findOne(@PathVariable int id) {
-		Optional<ClassRoom> optIncident = this.classroomdao.findById(id);
-		return new ResponseEntity<ClassRoom>(optIncident.get(),HttpStatus.OK);
-	}
 }

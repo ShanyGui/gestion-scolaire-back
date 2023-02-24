@@ -20,7 +20,7 @@ public class ClassGroup {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@NonNull
 	private String name;
@@ -29,6 +29,6 @@ public class ClassGroup {
 	private Professor principalProfessor;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JsonIgnoreProperties("classgroups")
+	@JsonIgnoreProperties({"classrooms","professors", "classgroups"})
 	private Establishment establishment;
 }

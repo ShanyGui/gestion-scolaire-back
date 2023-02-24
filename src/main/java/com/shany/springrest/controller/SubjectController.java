@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shany.springrest.dao.SubjectDao;
+import com.shany.springrest.model.ClassGroup;
 import com.shany.springrest.model.Subject;
 
 @CrossOrigin("*")
@@ -36,17 +37,23 @@ public class SubjectController {
 		return new ResponseEntity<List<Subject>>(this.subjectdao.findAll(), HttpStatus.OK);
 	}
 
+	@GetMapping("/{id}")
+	public ResponseEntity<Subject> findOne(@PathVariable Integer id) {
+		Optional<Subject> optionSubject = this.subjectdao.findById(id);
+		return optionSubject.isPresent() ? new ResponseEntity<Subject>(optionSubject.get(), HttpStatus.OK)
+				: new ResponseEntity<Subject>(HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping("/findbyestablishment/{id}")
+	public ResponseEntity<List<Subject>> findByEstablishment(@PathVariable Integer id) {
+		return new ResponseEntity<List<Subject>>(subjectdao.findByEstablishmentId(id),HttpStatus.OK);		
+	}
+	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deletOne(@PathVariable Integer id) {
 		this.subjectdao.deleteById(id);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Subject> findOne(@PathVariable Integer id) {
-		Optional<Subject> optionSubject = this.subjectdao.findById(id);
-		return optionSubject.isPresent() ? new ResponseEntity<Subject>(optionSubject.get(), HttpStatus.OK)
-				: new ResponseEntity<Subject>(HttpStatus.NOT_FOUND);
-
-	}
+	
 }
