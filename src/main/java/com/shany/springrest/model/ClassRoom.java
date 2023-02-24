@@ -19,7 +19,7 @@ public class ClassRoom {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@NonNull
 	private String name;
@@ -31,6 +31,6 @@ public class ClassRoom {
 	private Integer capacity;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JsonIgnoreProperties("classrooms")
+	@JsonIgnoreProperties({"professors", "classgroups", "classrooms"})
 	private Establishment establishment;
 }
