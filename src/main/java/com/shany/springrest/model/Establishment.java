@@ -2,6 +2,8 @@ package com.shany.springrest.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -21,7 +23,7 @@ public class Establishment {
  
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@NonNull
 	private String name;
@@ -38,9 +40,11 @@ public class Establishment {
 	private String logo;
 	
 	@OneToMany(mappedBy = "establishment", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("establishment")
 	private List<Professor> professors;
 	
 	@OneToMany(mappedBy = "establishment", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("establishment")
 	private List<ClassRoom> classrooms;
 	
 	@OneToMany(mappedBy = "establishment", cascade = CascadeType.ALL)

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,7 +27,7 @@ public class Professor {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@NonNull
 	private String lastname;
@@ -42,9 +43,11 @@ public class Professor {
 	private List<Subject> subjects;
 	
 	@OneToOne(mappedBy = "principalProfessor")
+	@JsonIgnoreProperties("principalProfessor")
 	private ClassGroup principalClass;
 	
 	@ManyToOne
+	@JsonIgnoreProperties({"classgroups","classrooms","professors"})
 	private Establishment establishment;
 	
 }
