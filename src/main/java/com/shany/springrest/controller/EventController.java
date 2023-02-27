@@ -28,6 +28,7 @@ public class EventController {
 	@Autowired
 	EventDao eventdao;
 
+
 	@PostMapping("/")
 	public ResponseEntity<Event> addOne(@RequestBody Event event) {
 		this.eventdao.save(event);
@@ -47,13 +48,15 @@ public class EventController {
 				: new ResponseEntity<Event>(HttpStatus.NOT_FOUND);
 	}
 
+	@GetMapping("/findbyestablishment/{id}")
+	public ResponseEntity<List<Event>> findByEstablishment(@PathVariable Integer id) {
+		return new ResponseEntity<List<Event>>(eventdao.findByEstablishmentId(id),HttpStatus.OK);		
+	}
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deletOne(@PathVariable Integer id) {
 		this.eventdao.deleteById(id);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
-
-	
-
 	
 }
