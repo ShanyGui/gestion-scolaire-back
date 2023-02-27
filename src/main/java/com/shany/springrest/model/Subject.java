@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -32,4 +33,7 @@ public class Subject {
 	
 	@ManyToMany(mappedBy = "subjects",cascade = CascadeType.MERGE)	
 	private List<Professor> professors;
+	
+	@OneToMany(mappedBy = "subject")
+	private List<Event> events;
 }
