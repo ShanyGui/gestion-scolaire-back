@@ -30,14 +30,12 @@ public class ProfessorController {
 	@PostMapping({"/", ""})
 	public ResponseEntity<Professor> addOne(@RequestBody Professor professor) {
 		this.professordao.save(professor);
-		
 		return new ResponseEntity<Professor>(professor, HttpStatus.CREATED);
 	}
 
 	@GetMapping("/")
 	public ResponseEntity<List<Professor>> findAll() {
 		return new ResponseEntity<List<Professor>>(this.professordao.findAll(), HttpStatus.OK);
-
 	}
 
 	@GetMapping("/{id}")
@@ -48,7 +46,7 @@ public class ProfessorController {
 	}
 	
 	@GetMapping("/findbyestablishment/{id}")
-	public ResponseEntity<List<Professor>> findByEstablishment(@PathVariable Integer id) {
+	public ResponseEntity<List<Professor>> findByEstablishmentId(@PathVariable Integer id) {
 		return new ResponseEntity<List<Professor>>(professordao.findByEstablishmentId(id),HttpStatus.OK);		
 	}
 	
