@@ -1,8 +1,8 @@
 package com.shany.springrest.model;
 
 import java.util.Date;
-import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -12,10 +12,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -23,33 +20,29 @@ import lombok.NonNull;
 @Entity
 @Data
 @NoArgsConstructor
-public class Professor {
-
+public class Event {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@NonNull
-	private String lastname;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date startHour;
 	
 	@NonNull
-	private String firstname;
-	
-	@NonNull
-	private String dateOfBirth;
-	
-	@ManyToMany
-	@JsonIgnoreProperties("professors")
-	private List<Subject> subjects;
-	
-	@OneToOne(mappedBy = "principalProfessor")
-	@JsonIgnoreProperties("principalProfessor")
-	private ClassGroup principalClass;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date endHour;
 	
 	@ManyToOne
-	@JsonIgnoreProperties({"classgroups","classrooms","professors"})
-	private Establishment establishment;
+	@JsonIgnore
+	private Professor professor;
 	
-	@OneToMany(mappedBy = "professor")
-	private List<Event> events;
+	@ManyToOne
+	@JsonIgnore
+	private Subject subject;
+	
+	@ManyToOne
+	@JsonIgnore
+	private Establishment establishment;
 }
