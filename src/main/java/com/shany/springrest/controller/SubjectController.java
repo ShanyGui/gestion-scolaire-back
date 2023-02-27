@@ -1,5 +1,6 @@
 package com.shany.springrest.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.shany.springrest.dao.SubjectDao;
 import com.shany.springrest.model.ClassGroup;
+import com.shany.springrest.model.Professor;
 import com.shany.springrest.model.Subject;
 
 @CrossOrigin("*")
@@ -43,12 +46,24 @@ public class SubjectController {
 		return optionSubject.isPresent() ? new ResponseEntity<Subject>(optionSubject.get(), HttpStatus.OK)
 				: new ResponseEntity<Subject>(HttpStatus.NOT_FOUND);
 	}
-	
-	@GetMapping("/findbyestablishment/{id}")
-	public ResponseEntity<List<Subject>> findByEstablishment(@PathVariable Integer id) {
-		return new ResponseEntity<List<Subject>>(subjectdao.findByEstablishmentId(id),HttpStatus.OK);		
+/*	
+	@GetMapping({"/findbyprofessors/", "/findbyprofessors"})
+	public ResponseEntity<List<Subject>> findByProfessors(@RequestBody List<Professor> professors) {
+
+		List<Subject> returnedSubjects = new ArrayList<>();
+		List<Subject> professorSubjects = new ArrayList<>();
+		
+		for (Professor professor : professors) {
+			professorSubjects = (subjectdao.findByProfessors(professors));
+			for (Subject subject : professorSubjects) {
+				returnedSubjects.add(subject);
+			}
+		}
+		
+		return new ResponseEntity<List<Subject>>(returnedSubjects,HttpStatus.OK);
+
 	}
-	
+*/
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deletOne(@PathVariable Integer id) {
 		this.subjectdao.deleteById(id);

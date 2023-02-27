@@ -50,4 +50,6 @@ public class Professor {
 	@JsonIgnoreProperties({"classgroups","classrooms","professors"})
 	private Establishment establishment;
 	
+	@OneToMany(mappedBy = "professor")
+	private List<Event> events;
 }

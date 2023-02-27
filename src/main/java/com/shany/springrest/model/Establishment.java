@@ -50,4 +50,7 @@ public class Establishment {
 	@OneToMany(mappedBy = "establishment", cascade = CascadeType.ALL)
 	private List<ClassGroup> classgroups;
 	
+	@OneToMany(mappedBy = "establishment")
+	private List<Event> events;
+	
 }
