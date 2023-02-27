@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shany.springrest.dao.EstablishmentDao;
 import com.shany.springrest.dao.EventDao;
+import com.shany.springrest.model.ClassRoom;
 import com.shany.springrest.model.Establishment;
 import com.shany.springrest.model.Event;
 
@@ -24,16 +25,16 @@ import com.shany.springrest.model.Event;
 @CrossOrigin("*")
 @RequestMapping("/events")
 public class EventController {
-
+	
 	@Autowired
 	EventDao eventdao;
-
+	
 	@PostMapping("/")
 	public ResponseEntity<Event> addOne(@RequestBody Event event) {
 		this.eventdao.save(event);
 		return new ResponseEntity<Event>(event, HttpStatus.CREATED);
 	}
-
+	
 	@GetMapping("/")
 	public ResponseEntity<List<Event>> findAll() {
 		return new ResponseEntity<List<Event>>(this.eventdao.findAll(), HttpStatus.OK);
@@ -46,14 +47,16 @@ public class EventController {
 				? new ResponseEntity<Event>(optionEvent.get(), HttpStatus.OK)
 				: new ResponseEntity<Event>(HttpStatus.NOT_FOUND);
 	}
-
+	
+	@GetMapping("/findbyestablishment/{id}")
+	public ResponseEntity<List<Event>> findByEstablishment(@PathVariable Integer id) {
+		return new ResponseEntity<List<Event>>(eventdao.findByEstablishmentId(id),HttpStatus.OK);		
+	}
+	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deletOne(@PathVariable Integer id) {
 		this.eventdao.deleteById(id);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
-
-	
-
 	
 }
